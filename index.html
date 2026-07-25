@@ -150,7 +150,7 @@
     gap:18px;
     padding:24px;
   }
-  canvas.hero-wave{width:100%; height:100%; display:block;}
+  canvas.hero-wave{width:100%; height:120px; display:block;}
   .hero-graphic-label{
     font-family:'Space Mono',monospace;
     font-size:11px;
@@ -170,7 +170,7 @@
     grid-template-columns:1.4fr 1fr;
     gap:48px;
   }
-  .about p{color:var(--cinza); margin:0; font-size:15px;}
+  .about-grid p{color:var(--cinza); margin:0; font-size:15px;}
   .credits{display:flex; flex-direction:column; gap:14px;}
   .credit-label{
     font-family:'Space Mono',monospace;
@@ -210,32 +210,59 @@
     color:var(--cinza);
   }
 
-  /* ---------- Lista de faixas ---------- */
-  .tracklist{display:flex; flex-direction:column;}
-  .track{
+  /* ---------- Grade de faixas ---------- */
+  .catalog-grid{
     display:grid;
-    grid-template-columns:44px 1.6fr 40px 1fr 56px;
-    align-items:center;
-    gap:18px;
-    padding:18px 0;
-    border-bottom:1px solid var(--linha);
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:1px;
+    background:var(--linha);
   }
-  .track-num{
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    font-weight:700;
+  .card{
+    background:var(--preto);
+    display:flex;
+    flex-direction:column;
+  }
+  .card-cover{
+    position:relative;
+    aspect-ratio:16/9;
+    background:var(--preto);
+    border-bottom:1px solid var(--linha);
+    overflow:hidden;
+  }
+  .card-cover img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .card-spine{
+    position:absolute;
+    top:10px; left:10px;
     background:var(--branco);
     color:var(--preto);
-    width:32px;height:32px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .track-title{font-size:16px; font-weight:700; margin:0;}
-  .track-status{
     font-family:'Space Mono',monospace;
-    font-size:10px;
-    color:var(--cinza);
-    grid-column:2;
-    margin-top:4px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:4px 8px;
+  }
+
+  .card-body{padding:22px; display:flex; flex-direction:column; gap:14px; flex:1;}
+  .card-title{margin:0; font-size:17px; font-weight:700;}
+  .card-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .tag{
+    background:var(--branco);
+    color:var(--preto);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    font-weight:700;
+    padding:3px 8px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  .card-controls{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:auto;
   }
   .play-btn{
     width:40px;height:40px;
@@ -251,23 +278,14 @@
   .play-btn:focus-visible{outline:2px solid var(--branco); outline-offset:2px;}
   .play-btn svg{width:14px;height:14px;}
 
-  .progress-track{height:2px; background:rgba(255,255,255,0.2); position:relative;}
+  .progress-track{flex:1; height:2px; background:rgba(255,255,255,0.2); position:relative;}
   .progress-fill{height:100%; width:0%; background:var(--branco);}
 
-  .track-duration{
+  .card-status{
     font-family:'Space Mono',monospace;
-    font-size:12px;
+    font-size:11px;
     color:var(--cinza);
-    text-align:right;
-  }
-
-  @media (max-width:640px){
-    .track{grid-template-columns:36px 1fr 32px; grid-template-areas:"num title dur" "num progress progress";}
-    .track-num{grid-area:num;}
-    .track-title{grid-area:title;}
-    .track-duration{grid-area:dur;}
-    .play-btn{grid-area:num;}
-    .progress-track{grid-area:progress; margin-top:10px;}
+    min-height:14px;
   }
 
   /* ---------- Ouvir / rodapé ---------- */
@@ -315,11 +333,11 @@
       <div>
         <span class="eyebrow mono">Álbum — 2026</span>
         <h1 class="headline">NEWGRASS</h1>
-        <p class="sub">XXXXXXXXXX — uma breve descrição do álbum: conceito, som e o que motivou essas faixas.</p>
+        <p class="sub">NEWGRASS IS GROWING.</p>
         <a href="#tracks" class="btn btn-primary">Ver as faixas</a>
       </div>
       <div class="hero-graphic">
-        <canvas class="hero-wave" id="heroWave" width="440" height="440"></canvas>
+        <canvas class="hero-wave" id="heroWave" width="440" height="240"></canvas>
         <p class="hero-graphic-label">Sinal de Áudio</p>
       </div>
     </div>
@@ -327,21 +345,21 @@
 
   <section class="about" id="about">
     <div class="wrap about-grid">
-      <div class="about">
+      <div>
         <p>XXXXXXXXXX — texto sobre o álbum: contexto de criação, referências, e o que ele representa dentro do trabalho de KOSMONAUTTA.</p>
       </div>
       <div class="credits">
         <div>
           <span class="credit-label mono">Produção</span>
-          <p class="credit-value">XXXXXXXXXX</p>
+          <p class="credit-value">KOSMONAUTTA</p>
         </div>
         <div>
           <span class="credit-label mono">Mixagem e Masterização</span>
-          <p class="credit-value">XXXXXXXXXX</p>
+          <p class="credit-value">XXXX</p>
         </div>
         <div>
           <span class="credit-label mono">Lançamento</span>
-          <p class="credit-value">XXXXXXXXXX</p>
+          <p class="credit-value">XXXX</p>
         </div>
       </div>
     </div>
@@ -353,7 +371,7 @@
         <h2>Faixas</h2>
         <span class="count mono" id="trackCount"></span>
       </div>
-      <div class="tracklist" id="tracklist"></div>
+      <div class="catalog-grid" id="tracklistGrid"></div>
     </div>
   </section>
 
@@ -384,20 +402,28 @@
 
 const CONFIG = {
   storeName: "KOSMONAUTTA",
+  albumCover: "covers/newgrass.jpg",
   spotifyUrl: "https://open.spotify.com/",
   appleMusicUrl: "https://music.apple.com/",
   youtubeMusicUrl: "https://music.youtube.com/",
 };
 
 const TRACKS = [
-  { number:"01", title:"XXXXXXXXXX", duration:"3:24", audio:"audio/01.mp3" },
-  { number:"02", title:"XXXXXXXXXX", duration:"2:57", audio:"audio/02.mp3" },
-  { number:"03", title:"XXXXXXXXXX", duration:"4:10", audio:"audio/03.mp3" },
-  { number:"04", title:"XXXXXXXXXX", duration:"3:02", audio:"audio/04.mp3" },
-  { number:"05", title:"XXXXXXXXXX", duration:"3:41", audio:"audio/05.mp3" },
-  { number:"06", title:"XXXXXXXXXX", duration:"2:38", audio:"audio/06.mp3" },
-  { number:"07", title:"XXXXXXXXXX", duration:"3:55", audio:"audio/07.mp3" },
-  { number:"08", title:"XXXXXXXXXX", duration:"4:22", audio:"audio/08.mp3" }
+  { code:"FAIXA-001", title:"SUPERNOVA",     genre:"HYPERPOP",      bpm:170, key:"C Major",  audio:"audio/f-001.mp3", cover:"covers/f-001.png" },
+  { code:"FAIXA-002", title:"ION",        genre:"HYPERPOP",  bpm:92,  key:"Dó Menor",  audio:"audio/f-002.mp3", cover:"covers/f-002.png" },
+  { code:"FAIXA-003", title:"YOKAI",     genre:"HYPERPOP",     bpm:143, key:"Sol Menor", audio:"audio/f-003.mp3", cover:"covers/f-003.png" },
+  { code:"FAIXA-004", title:"SPIRITBOX",        genre:"HYPERPOP",       bpm:78,  key:"Lá Maior",  audio:"audio/f-004.mp3", cover:"covers/f-004.png" },
+  { code:"FAIXA-005", title:"HANSHIN TIGERS",         genre:"HYPERPOP",  bpm:104, key:"Ré Menor",  audio:"audio/f-005.mp3", cover:"covers/f-005.png" },
+  { code:"FAIXA-006", title:"SAGITÁRIO",         genre:"HYPERPOP",  bpm:104, key:"Ré Menor",  audio:"audio/f-006.mp3", cover:"covers/f-006.png" },
+  { code:"FAIXA-007", title:"SUPER SENTAI", genre:"HYPERPOP",     bpm:132,  key:"A# Major",  audio:"audio/f-007.mp3", cover:"covers/f-007.png" },
+  { code:"FAIXA-008", title:"ABRIL", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-008.mp3", cover:"covers/f-008.png" },
+  { code:"FAIXA-009", title:"LIMINALIDADE", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-009.mp3", cover:"covers/f-009.png" },
+  { code:"FAIXA-0010", title:"LASER FLIP", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-010.mp3", cover:"covers/f-010.png" },
+  { code:"FAIXA-0011", title:"PLÁSTICO BOLHA", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-011.mp3", cover:"covers/f-011.png" },
+  { code:"FAIXA-0012", title:"GUNDAM", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-012.mp3", cover:"covers/f-012.png" },
+  { code:"FAIXA-0013", title:"KABOOM", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-013.mp3", cover:"covers/f-013.png" },
+  { code:"FAIXA-0014", title:"HOSHI", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-014.mp3", cover:"covers/f-014.png" },
+  { code:"FAIXA-0015", title:"BEYBLADE", genre:"HYPERPOP",     bpm:82,  key:"Mi Menor",  audio:"audio/f-015.mp3", cover:"covers/f-015.png" }
 ];
 
 /* ========================= Fim da seção editável ========================= */
@@ -409,70 +435,55 @@ document.getElementById("linkApple").href = CONFIG.appleMusicUrl;
 document.getElementById("linkYoutube").href = CONFIG.youtubeMusicUrl;
 
 let audioCtx = null;
-let currentlyPlaying = null; // { audio, analyser, freqData, progressFill, playBtn }
+let currentlyPlaying = null; // { audio, analyser, waveData, progressFill, playBtn }
 
-/* ---------------- Visualizador radial (elaborado, gira devagar) ---------------- */
+/* ---------------- Onda do hero (idêntica à do outro site) ---------------- */
 const heroWave = document.getElementById("heroWave");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let rotation = 0;
 let idlePhase = 0;
 
-function drawRadial(canvas, freqData, rot){
+function drawWave(canvas, dataArray){
   const ctx = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height;
   ctx.clearRect(0,0,w,h);
-  const cx = w/2, cy = h/2;
-  const baseR = Math.min(w,h) * 0.22;
-  const n = freqData.length;
-
+  ctx.lineWidth = 2;
   ctx.strokeStyle = "#FFFFFF";
-  ctx.lineWidth = Math.max(1.4, w*0.0035);
-  for (let i=0;i<n;i++){
-    const angle = (i/n) * Math.PI * 2 + rot;
-    const level = freqData[i] / 255;
-    const barLen = baseR*0.18 + level*baseR*1.15;
-    const x1 = cx + Math.cos(angle)*baseR;
-    const y1 = cy + Math.sin(angle)*baseR;
-    const x2 = cx + Math.cos(angle)*(baseR+barLen);
-    const y2 = cy + Math.sin(angle)*(baseR+barLen);
-    ctx.beginPath();
-    ctx.moveTo(x1,y1);
-    ctx.lineTo(x2,y2);
-    ctx.stroke();
-  }
-
-  ctx.globalAlpha = 0.35;
-  ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.arc(cx,cy,baseR,0,Math.PI*2);
+  const n = dataArray.length;
+  const sliceWidth = w / (n - 1);
+  let x = 0;
+  for (let i=0;i<n;i++){
+    const v = dataArray[i] / 128.0; // ~0..2, 1 = linha central
+    const y = (v * h) / 2;
+    if (i === 0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    x += sliceWidth;
+  }
   ctx.stroke();
-  ctx.globalAlpha = 1;
 }
 
 function heroLoop(){
-  if (!reduceMotion) rotation += 0.0035;
   if (currentlyPlaying){
-    currentlyPlaying.analyser.getByteFrequencyData(currentlyPlaying.freqData);
-    drawRadial(heroWave, currentlyPlaying.freqData, rotation);
+    currentlyPlaying.analyser.getByteTimeDomainData(currentlyPlaying.waveData);
+    drawWave(heroWave, currentlyPlaying.waveData);
   } else if (!reduceMotion) {
-    idlePhase += 0.02;
+    idlePhase += 0.06;
     const n = 64;
     const synthetic = new Uint8Array(n);
     for (let i=0;i<n;i++){
-      synthetic[i] = 40 + Math.max(0, Math.sin(idlePhase + i*0.25)) * 40;
+      synthetic[i] = 128 + Math.sin(idlePhase + i*0.35) * 6;
     }
-    drawRadial(heroWave, synthetic, rotation);
+    drawWave(heroWave, synthetic);
   }
   requestAnimationFrame(heroLoop);
 }
 if (!reduceMotion){
   heroLoop();
 } else {
-  drawRadial(heroWave, new Uint8Array(64).fill(30), 0);
+  drawWave(heroWave, new Uint8Array(64).fill(128));
 }
 
 /* ---------------- Renderização das faixas ---------------- */
-const list = document.getElementById("tracklist");
+const grid = document.getElementById("tracklistGrid");
 document.getElementById("trackCount").textContent = `${TRACKS.length} faixas`;
 
 function stopCurrent(){
@@ -493,25 +504,36 @@ function pauseIcon(){
 }
 
 TRACKS.forEach(track=>{
-  const row = document.createElement("div");
-  row.className = "track";
+  const card = document.createElement("div");
+  card.className = "card";
 
-  row.innerHTML = `
-    <button class="play-btn" aria-label="Ouvir ${track.title}">${playIcon()}</button>
-    <p class="track-title">${track.title}</p>
-    <span></span>
-    <div class="progress-track"><div class="progress-fill"></div></div>
-    <span class="track-duration mono">${track.duration}</span>
-    <p class="track-status mono"></p>
+  card.innerHTML = `
+    <div class="card-cover">
+      <img src="${CONFIG.albumCover}" alt="capa do álbum NEWGRASS" loading="lazy"
+           onerror="this.style.display='none';">
+      <span class="card-spine">${track.number}</span>
+    </div>
+    <div class="card-body">
+      <p class="card-title">${track.title}</p>
+      <div class="card-tags">
+        <span class="tag">Faixa ${track.number}</span>
+        <span class="tag">${track.duration}</span>
+      </div>
+      <div class="card-controls">
+        <button class="play-btn" aria-label="Ouvir ${track.title}">${playIcon()}</button>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+      </div>
+      <p class="card-status mono"></p>
+    </div>
   `;
 
   const audio = new Audio(track.audio);
   audio.preload = "none";
-  const playBtn = row.querySelector(".play-btn");
-  const progressFill = row.querySelector(".progress-fill");
-  const statusEl = row.querySelector(".track-status");
+  const playBtn = card.querySelector(".play-btn");
+  const progressFill = card.querySelector(".progress-fill");
+  const statusEl = card.querySelector(".card-status");
 
-  let source = null, analyser = null, freqData = null;
+  let source = null, analyser = null, waveData = null;
 
   function ensureAudioGraph(){
     if (!audioCtx){
@@ -520,8 +542,8 @@ TRACKS.forEach(track=>{
     if (!source){
       source = audioCtx.createMediaElementSource(audio);
       analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 128;
-      freqData = new Uint8Array(analyser.frequencyBinCount);
+      analyser.fftSize = 256;
+      waveData = new Uint8Array(analyser.fftSize);
       source.connect(analyser);
       analyser.connect(audioCtx.destination);
     }
@@ -542,7 +564,7 @@ TRACKS.forEach(track=>{
     playBtn.classList.add("is-playing");
     playBtn.innerHTML = pauseIcon();
     statusEl.textContent = "";
-    currentlyPlaying = { audio, analyser, freqData, progressFill, playBtn };
+    currentlyPlaying = { audio, analyser, waveData, progressFill, playBtn };
   });
   audio.addEventListener("timeupdate", ()=>{
     if (audio.duration){
@@ -563,7 +585,7 @@ TRACKS.forEach(track=>{
     playBtn.style.cursor = "default";
   });
 
-  list.appendChild(row);
+  grid.appendChild(card);
 });
 </script>
 
