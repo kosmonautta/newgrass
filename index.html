@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>KOSMONAUTTA — NEWGRASS</title>
+<meta name="description" content="NEWGRASS, o novo álbum de KOSMONAUTTA. Ouça as faixas e encontre em todas as plataformas.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --preto:#000000;
+    --branco:#FFFFFF;
+    --cinza:#999999;
+    --linha:rgba(255,255,255,0.18);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--preto);
+    color:var(--branco);
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  .mono{font-family:'Space Mono',monospace;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- Cabeçalho ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(0,0,0,0.96);
+    border-bottom:1px solid var(--linha);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    padding:18px 0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-decoration:none;
+    text-transform:uppercase;
+  }
+  .brand-logo{height:24px;width:auto;display:block;flex-shrink:0;}
+  nav.links{
+    display:flex;
+    gap:28px;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--branco);
+    padding:4px 2px;
+  }
+  nav.links a:hover,
+  nav.links a:focus-visible{text-decoration:underline; text-underline-offset:4px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 56px;
+    border-bottom:1px solid var(--linha);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    background:var(--branco);
+    color:var(--preto);
+    text-transform:uppercase;
+    padding:4px 10px;
+    font-weight:700;
+    margin:0 0 22px;
+  }
+  h1.headline{
+    font-size:clamp(36px,5.2vw,58px);
+    line-height:1.05;
+    margin:0 0 22px;
+    font-weight:900;
+    letter-spacing:-0.5px;
+  }
+  .hero p.sub{
+    color:var(--cinza);
+    font-size:17px;
+    max-width:44ch;
+    margin:0 0 30px;
+    font-weight:400;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:14px 24px;
+    cursor:pointer;
+    transition:opacity 0.15s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--branco); outline-offset:3px;}
+  .btn-primary{background:var(--branco); color:var(--preto); border:none;}
+  .btn-primary:hover{opacity:0.8;}
+  .btn-ghost{background:var(--preto); color:var(--branco); border:1px solid var(--branco);}
+  .btn-ghost:hover{background:var(--branco); color:var(--preto);}
+
+  .hero-graphic{
+    aspect-ratio:1/1;
+    border:1px solid var(--linha);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    padding:24px;
+  }
+  canvas.hero-wave{width:100%; height:100%; display:block;}
+  .hero-graphic-label{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--cinza);
+    text-transform:uppercase;
+    margin:0;
+  }
+
+  /* ---------- Sobre ---------- */
+  .about{
+    padding:48px 0;
+    border-bottom:1px solid var(--linha);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+  }
+  .about p{color:var(--cinza); margin:0; font-size:15px;}
+  .credits{display:flex; flex-direction:column; gap:14px;}
+  .credit-label{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    background:var(--branco);
+    color:var(--preto);
+    display:inline-block;
+    padding:3px 8px;
+    margin:0 0 4px;
+    font-weight:700;
+  }
+  .credit-value{margin:0; font-size:14px;}
+
+  /* ---------- Cabeçalhos de seção ---------- */
+  .section{padding:72px 0;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:36px;
+    border-bottom:1px solid var(--linha);
+    padding-bottom:18px;
+  }
+  .section-head h2{
+    font-size:22px;
+    font-weight:700;
+    margin:0;
+    letter-spacing:0.3px;
+    text-transform:uppercase;
+  }
+  .section-head .count{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--cinza);
+  }
+
+  /* ---------- Lista de faixas ---------- */
+  .tracklist{display:flex; flex-direction:column;}
+  .track{
+    display:grid;
+    grid-template-columns:44px 1.6fr 40px 1fr 56px;
+    align-items:center;
+    gap:18px;
+    padding:18px 0;
+    border-bottom:1px solid var(--linha);
+  }
+  .track-num{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    font-weight:700;
+    background:var(--branco);
+    color:var(--preto);
+    width:32px;height:32px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .track-title{font-size:16px; font-weight:700; margin:0;}
+  .track-status{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    color:var(--cinza);
+    grid-column:2;
+    margin-top:4px;
+  }
+  .play-btn{
+    width:40px;height:40px;
+    background:var(--preto);
+    color:var(--branco);
+    border:1px solid var(--branco);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .play-btn.is-playing{background:var(--branco); color:var(--preto);}
+  .play-btn:focus-visible{outline:2px solid var(--branco); outline-offset:2px;}
+  .play-btn svg{width:14px;height:14px;}
+
+  .progress-track{height:2px; background:rgba(255,255,255,0.2); position:relative;}
+  .progress-fill{height:100%; width:0%; background:var(--branco);}
+
+  .track-duration{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--cinza);
+    text-align:right;
+  }
+
+  @media (max-width:640px){
+    .track{grid-template-columns:36px 1fr 32px; grid-template-areas:"num title dur" "num progress progress";}
+    .track-num{grid-area:num;}
+    .track-title{grid-area:title;}
+    .track-duration{grid-area:dur;}
+    .play-btn{grid-area:num;}
+    .progress-track{grid-area:progress; margin-top:10px;}
+  }
+
+  /* ---------- Ouvir / rodapé ---------- */
+  .listen{text-align:center; padding:72px 0 48px;}
+  .listen h2{font-size:26px; font-weight:900; margin:0 0 14px; text-transform:uppercase;}
+  .listen p{color:var(--cinza); max-width:44ch; margin:0 auto 30px;}
+  .listen .btn-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    border-top:1px solid var(--linha);
+    padding:26px 0;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--cinza);
+    text-align:center;
+  }
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    nav.links{gap:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/logo.png" alt="Logo KOSMONAUTTA" class="brand-logo">
+      <span class="brand-name" id="brandName">KOSMONAUTTA</span>
+    </a>
+    <nav class="links">
+      <a href="#tracks">Faixas</a>
+      <a href="#about">Sobre</a>
+      <a href="#listen">Ouvir</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow mono">Álbum — 2026</span>
+        <h1 class="headline">NEWGRASS</h1>
+        <p class="sub">XXXXXXXXXX — uma breve descrição do álbum: conceito, som e o que motivou essas faixas.</p>
+        <a href="#tracks" class="btn btn-primary">Ver as faixas</a>
+      </div>
+      <div class="hero-graphic">
+        <canvas class="hero-wave" id="heroWave" width="440" height="440"></canvas>
+        <p class="hero-graphic-label">Sinal de Áudio</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about">
+        <p>XXXXXXXXXX — texto sobre o álbum: contexto de criação, referências, e o que ele representa dentro do trabalho de KOSMONAUTTA.</p>
+      </div>
+      <div class="credits">
+        <div>
+          <span class="credit-label mono">Produção</span>
+          <p class="credit-value">XXXXXXXXXX</p>
+        </div>
+        <div>
+          <span class="credit-label mono">Mixagem e Masterização</span>
+          <p class="credit-value">XXXXXXXXXX</p>
+        </div>
+        <div>
+          <span class="credit-label mono">Lançamento</span>
+          <p class="credit-value">XXXXXXXXXX</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tracks">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Faixas</h2>
+        <span class="count mono" id="trackCount"></span>
+      </div>
+      <div class="tracklist" id="tracklist"></div>
+    </div>
+  </section>
+
+  <section class="listen" id="listen">
+    <div class="wrap">
+      <h2>Ouça em todo lugar</h2>
+      <p>NEWGRASS está disponível nas principais plataformas de streaming.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" id="linkSpotify" target="_blank" rel="noopener">Spotify</a>
+        <a class="btn btn-ghost" id="linkApple" target="_blank" rel="noopener">Apple Music</a>
+        <a class="btn btn-ghost" id="linkYoutube" target="_blank" rel="noopener">YouTube Music</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span id="footerText">KOSMONAUTTA — NEWGRASS. © 2026.</span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   EDITE ESTA SEÇÃO — dados do álbum e a lista de faixas.
+   ========================================================= */
+
+const CONFIG = {
+  storeName: "KOSMONAUTTA",
+  spotifyUrl: "https://open.spotify.com/",
+  appleMusicUrl: "https://music.apple.com/",
+  youtubeMusicUrl: "https://music.youtube.com/",
+};
+
+const TRACKS = [
+  { number:"01", title:"XXXXXXXXXX", duration:"3:24", audio:"audio/01.mp3" },
+  { number:"02", title:"XXXXXXXXXX", duration:"2:57", audio:"audio/02.mp3" },
+  { number:"03", title:"XXXXXXXXXX", duration:"4:10", audio:"audio/03.mp3" },
+  { number:"04", title:"XXXXXXXXXX", duration:"3:02", audio:"audio/04.mp3" },
+  { number:"05", title:"XXXXXXXXXX", duration:"3:41", audio:"audio/05.mp3" },
+  { number:"06", title:"XXXXXXXXXX", duration:"2:38", audio:"audio/06.mp3" },
+  { number:"07", title:"XXXXXXXXXX", duration:"3:55", audio:"audio/07.mp3" },
+  { number:"08", title:"XXXXXXXXXX", duration:"4:22", audio:"audio/08.mp3" }
+];
+
+/* ========================= Fim da seção editável ========================= */
+
+document.getElementById("brandName").textContent = CONFIG.storeName;
+document.getElementById("footerText").textContent = `${CONFIG.storeName} — NEWGRASS. © ${new Date().getFullYear()}.`;
+document.getElementById("linkSpotify").href = CONFIG.spotifyUrl;
+document.getElementById("linkApple").href = CONFIG.appleMusicUrl;
+document.getElementById("linkYoutube").href = CONFIG.youtubeMusicUrl;
+
+let audioCtx = null;
+let currentlyPlaying = null; // { audio, analyser, freqData, progressFill, playBtn }
+
+/* ---------------- Visualizador radial (elaborado, gira devagar) ---------------- */
+const heroWave = document.getElementById("heroWave");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let rotation = 0;
+let idlePhase = 0;
+
+function drawRadial(canvas, freqData, rot){
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const cx = w/2, cy = h/2;
+  const baseR = Math.min(w,h) * 0.22;
+  const n = freqData.length;
+
+  ctx.strokeStyle = "#FFFFFF";
+  ctx.lineWidth = Math.max(1.4, w*0.0035);
+  for (let i=0;i<n;i++){
+    const angle = (i/n) * Math.PI * 2 + rot;
+    const level = freqData[i] / 255;
+    const barLen = baseR*0.18 + level*baseR*1.15;
+    const x1 = cx + Math.cos(angle)*baseR;
+    const y1 = cy + Math.sin(angle)*baseR;
+    const x2 = cx + Math.cos(angle)*(baseR+barLen);
+    const y2 = cy + Math.sin(angle)*(baseR+barLen);
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+  }
+
+  ctx.globalAlpha = 0.35;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(cx,cy,baseR,0,Math.PI*2);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
+function heroLoop(){
+  if (!reduceMotion) rotation += 0.0035;
+  if (currentlyPlaying){
+    currentlyPlaying.analyser.getByteFrequencyData(currentlyPlaying.freqData);
+    drawRadial(heroWave, currentlyPlaying.freqData, rotation);
+  } else if (!reduceMotion) {
+    idlePhase += 0.02;
+    const n = 64;
+    const synthetic = new Uint8Array(n);
+    for (let i=0;i<n;i++){
+      synthetic[i] = 40 + Math.max(0, Math.sin(idlePhase + i*0.25)) * 40;
+    }
+    drawRadial(heroWave, synthetic, rotation);
+  }
+  requestAnimationFrame(heroLoop);
+}
+if (!reduceMotion){
+  heroLoop();
+} else {
+  drawRadial(heroWave, new Uint8Array(64).fill(30), 0);
+}
+
+/* ---------------- Renderização das faixas ---------------- */
+const list = document.getElementById("tracklist");
+document.getElementById("trackCount").textContent = `${TRACKS.length} faixas`;
+
+function stopCurrent(){
+  if (currentlyPlaying){
+    currentlyPlaying.audio.pause();
+    currentlyPlaying.progressFill.style.width = "0%";
+    currentlyPlaying.playBtn.classList.remove("is-playing");
+    currentlyPlaying.playBtn.innerHTML = playIcon();
+    currentlyPlaying = null;
+  }
+}
+
+function playIcon(){
+  return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+}
+function pauseIcon(){
+  return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>`;
+}
+
+TRACKS.forEach(track=>{
+  const row = document.createElement("div");
+  row.className = "track";
+
+  row.innerHTML = `
+    <button class="play-btn" aria-label="Ouvir ${track.title}">${playIcon()}</button>
+    <p class="track-title">${track.title}</p>
+    <span></span>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+    <span class="track-duration mono">${track.duration}</span>
+    <p class="track-status mono"></p>
+  `;
+
+  const audio = new Audio(track.audio);
+  audio.preload = "none";
+  const playBtn = row.querySelector(".play-btn");
+  const progressFill = row.querySelector(".progress-fill");
+  const statusEl = row.querySelector(".track-status");
+
+  let source = null, analyser = null, freqData = null;
+
+  function ensureAudioGraph(){
+    if (!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (!source){
+      source = audioCtx.createMediaElementSource(audio);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 128;
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+    }
+  }
+
+  playBtn.addEventListener("click", ()=>{
+    if (currentlyPlaying && currentlyPlaying.audio === audio){
+      stopCurrent();
+      return;
+    }
+    stopCurrent();
+    ensureAudioGraph();
+    if (audioCtx.state === "suspended") audioCtx.resume();
+    audio.play().catch(()=>{});
+  });
+
+  audio.addEventListener("playing", ()=>{
+    playBtn.classList.add("is-playing");
+    playBtn.innerHTML = pauseIcon();
+    statusEl.textContent = "";
+    currentlyPlaying = { audio, analyser, freqData, progressFill, playBtn };
+  });
+  audio.addEventListener("timeupdate", ()=>{
+    if (audio.duration){
+      progressFill.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+    }
+  });
+  audio.addEventListener("pause", ()=>{
+    playBtn.classList.remove("is-playing");
+    playBtn.innerHTML = playIcon();
+  });
+  audio.addEventListener("ended", ()=>{
+    stopCurrent();
+  });
+  audio.addEventListener("error", ()=>{
+    statusEl.textContent = `Em breve — adicione ${track.audio}`;
+    playBtn.disabled = true;
+    playBtn.style.opacity = "0.4";
+    playBtn.style.cursor = "default";
+  });
+
+  list.appendChild(row);
+});
+</script>
+
+</body>
+</html>
