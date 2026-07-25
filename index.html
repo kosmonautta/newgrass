@@ -172,19 +172,35 @@
   }
   .about-grid p{color:var(--cinza); margin:0; font-size:15px;}
   .credits{display:flex; flex-direction:column; gap:14px;}
+  .about-cover{
+    aspect-ratio:1/1;
+    border:1px solid var(--linha);
+    overflow:hidden;
+  }
+  .about-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .credits-panel{
+    background:var(--branco);
+    color:var(--preto);
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    justify-content:center;
+  }
   .credit-label{
     font-family:'Space Mono',monospace;
     font-size:11px;
     letter-spacing:1.5px;
     text-transform:uppercase;
-    background:var(--branco);
-    color:var(--preto);
+    background:var(--preto);
+    color:var(--branco);
     display:inline-block;
     padding:3px 8px;
     margin:0 0 4px;
     font-weight:700;
   }
-  .credit-value{margin:0; font-size:14px;}
+  .credit-value{margin:0; font-size:14px; color:var(--preto);}
 
   /* ---------- Cabeçalhos de seção ---------- */
   .section{padding:72px 0;}
@@ -315,7 +331,7 @@
 <header>
   <div class="wrap nav-inner">
     <a href="#top" class="brand">
-      <img src="assets/logo.svg" alt="Logo KOSMONAUTTA" class="brand-logo">
+      <img src="assets/logo.png" alt="Logo KOSMONAUTTA" class="brand-logo">
       <span class="brand-name" id="brandName">KOSMONAUTTA</span>
     </a>
     <nav class="links">
@@ -333,7 +349,7 @@
       <div>
         <span class="eyebrow mono">Álbum — 2026</span>
         <h1 class="headline">NEWGRASS</h1>
-        <p class="sub">NEWGRASS IS GROWING.</p>
+        <p class="sub">XXXXXXXXXX — uma breve descrição do álbum: conceito, som e o que motivou essas faixas.</p>
         <a href="#tracks" class="btn btn-primary">Ver as faixas</a>
       </div>
       <div class="hero-graphic">
@@ -345,21 +361,21 @@
 
   <section class="about" id="about">
     <div class="wrap about-grid">
-      <div>
-        <p>XXXXXXXXXX — texto sobre o álbum: contexto de criação, referências, e o que ele representa dentro do trabalho de KOSMONAUTTA.</p>
+      <div class="about-cover">
+        <img src="covers/newgrass.jpg" alt="Capa do álbum NEWGRASS" id="aboutCover">
       </div>
-      <div class="credits">
+      <div class="credits-panel">
         <div>
           <span class="credit-label mono">Produção</span>
-          <p class="credit-value">KOSMONAUTTA</p>
+          <p class="credit-value">XXXXXXXXXX</p>
         </div>
         <div>
           <span class="credit-label mono">Mixagem e Masterização</span>
-          <p class="credit-value">XXXX</p>
+          <p class="credit-value">XXXXXXXXXX</p>
         </div>
         <div>
           <span class="credit-label mono">Lançamento</span>
-          <p class="credit-value">XXXX</p>
+          <p class="credit-value">XXXXXXXXXX</p>
         </div>
       </div>
     </div>
@@ -433,6 +449,7 @@ document.getElementById("footerText").textContent = `${CONFIG.storeName} — NEW
 document.getElementById("linkSpotify").href = CONFIG.spotifyUrl;
 document.getElementById("linkApple").href = CONFIG.appleMusicUrl;
 document.getElementById("linkYoutube").href = CONFIG.youtubeMusicUrl;
+document.getElementById("aboutCover").src = CONFIG.albumCover;
 
 let audioCtx = null;
 let currentlyPlaying = null; // { audio, analyser, waveData, progressFill, playBtn }
@@ -511,13 +528,13 @@ TRACKS.forEach(track=>{
     <div class="card-cover">
       <img src="${CONFIG.albumCover}" alt="capa do álbum NEWGRASS" loading="lazy"
            onerror="this.style.display='none';">
-      <span class="card-spine">${track.number}</span>
+      <span class="card-spine">${track.code}</span>
     </div>
     <div class="card-body">
       <p class="card-title">${track.title}</p>
       <div class="card-tags">
-        <span class="tag">Faixa ${track.number}</span>
-        <span class="tag">${track.duration}</span>
+        <span class="tag">${track.bpm} BPM</span>
+        <span class="tag">${track.key}</span>
       </div>
       <div class="card-controls">
         <button class="play-btn" aria-label="Ouvir ${track.title}">${playIcon()}</button>
